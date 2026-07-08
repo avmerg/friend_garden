@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Happy Hannah",
+    "tag": "Friend",
+    "cadenceDays": 30,
+    "location": "Brooklyn, NY",
+    "bio": "Met in college improv club. Always down for a spontaneous trip.",
+    "seedLastContactDaysAgo": 5
+  },
+  {
+    "name": "Okay Oscar",
+    "tag": "Work",
+    "cadenceDays": 30,
+    "location": "Remote",
+    "bio": "Former teammate, now at a different company. Good for career chats.",
+    "seedLastContactDaysAgo": 28
+  },
+  {
+    "name": "Thirsty Theo",
+    "tag": "College",
+    "cadenceDays": 14,
+    "location": "Chicago, IL",
+    "bio": "Roommate sophomore year. Into board games and cold brew.",
+    "seedLastContactDaysAgo": 40
+  },
+  {
+    "name": "Resting Rosa",
+    "tag": "Family",
+    "cadenceDays": 30,
+    "location": "Austin, TX",
+    "bio": "Cousin. Traveling abroad for a few months, checked in before she left.",
+    "seedLastContactDaysAgo": 60,
+    "seedSnoozeDaysFromNow": 20
+  },
+  {
+    "name": "New Nadia",
+    "tag": "Casual",
+    "cadenceDays": 90,
+    "location": "Seattle, WA",
+    "bio": "Met at a conference last month, exchanged numbers."
+  },
+  {
+    "name": "Low-touch Liam",
+    "tag": "Casual",
+    "cadenceDays": 365,
+    "location": "Denver, CO",
+    "bio": "Old neighbor. Happy to hear from once a year or so, no pressure either way.",
+    "lowTouch": true,
+    "seedLastContactDaysAgo": 400
+  }
+]

@@ -41,3 +41,6 @@ example
 # generated native folders
 /ios
 /android
+
+# real contact data (PII) — only the sample seed file is committed
+src/db/seed/contacts.seed.json
