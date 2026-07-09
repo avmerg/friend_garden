@@ -54,6 +54,7 @@ export default function RootLayout() {
       <Stack screenOptions={{ headerShown: true }}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="friend/[id]" options={{ title: '' }} />
+        <Stack.Screen name="archived" options={{ title: 'Archived' }} />
       </Stack>
     </ThemeProvider>
   );

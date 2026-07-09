@@ -26,6 +26,10 @@ export async function getAllFriends(): Promise<FriendRow[]> {
   return db.select().from(friends).where(eq(friends.archived, false));
 }
 
+export async function getArchivedFriends(): Promise<FriendRow[]> {
+  return db.select().from(friends).where(eq(friends.archived, true));
+}
+
 export async function getFriendById(id: string): Promise<FriendRow | null> {
   const rows = await db.select().from(friends).where(eq(friends.id, id)).limit(1);
   return rows[0] ?? null;
@@ -64,4 +68,12 @@ export async function updateFriend(
     .update(friends)
     .set({ ...patch, updatedAt: new Date().toISOString() })
     .where(eq(friends.id, id));
+}
+
+export async function archiveFriend(id: string): Promise<void> {
+  await updateFriend(id, { archived: true });
+}
+
+export async function unarchiveFriend(id: string): Promise<void> {
+  await updateFriend(id, { archived: false });
 }

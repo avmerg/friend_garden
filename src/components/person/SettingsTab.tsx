@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Switch, TextInput, View } from 'react-native';
+import { Alert, Pressable, ScrollView, StyleSheet, Switch, TextInput, View } from 'react-native';
+import { useRouter } from 'expo-router';
 
 import { ThemedText } from '@/components/themed-text';
 import { useTheme } from '@/hooks/use-theme';
 import { useUpdateFriend } from '@/hooks/useUpdateFriend';
+import { useArchiveFriend } from '@/hooks/useArchiveFriend';
 import {
   CADENCE_OPTIONS,
   PLANT_TYPES,
@@ -50,7 +52,9 @@ function ChipRow<T extends string>({
 
 export function SettingsTab({ friend }: SettingsTabProps) {
   const theme = useTheme();
+  const router = useRouter();
   const updateFriend = useUpdateFriend();
+  const { archive } = useArchiveFriend();
 
   const [name, setName] = useState(friend.name);
   const [tag, setTag] = useState(friend.tag as Tag);
@@ -113,6 +117,24 @@ export function SettingsTab({ friend }: SettingsTabProps) {
   };
 
   const isSnoozed = friend.snoozeUntil !== null && new Date(friend.snoozeUntil) > new Date();
+
+  const handleArchive = () => {
+    Alert.alert(
+      `Archive ${friend.name}?`,
+      'They’ll disappear from your garden, Today, and Dashboard, but their contact history is kept and you can unarchive them anytime from the archive list.',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Archive',
+          style: 'destructive',
+          onPress: async () => {
+            await archive(friend);
+            router.back();
+          },
+        },
+      ],
+    );
+  };
 
   const inputStyle = [
     styles.input,
@@ -266,6 +288,12 @@ export function SettingsTab({ friend }: SettingsTabProps) {
           </Pressable>
         </View>
       </View>
+
+      <Pressable style={styles.archiveButton} onPress={handleArchive}>
+        <ThemedText type="smallBold" style={styles.archiveButtonText}>
+          Archive {friend.name}
+        </ThemedText>
+      </Pressable>
     </ScrollView>
   );
 }
@@ -328,5 +356,16 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     borderRadius: 12,
     alignItems: 'center',
+  },
+  archiveButton: {
+    borderWidth: 1,
+    borderColor: '#E4572E',
+    paddingVertical: 14,
+    borderRadius: 12,
+    alignItems: 'center',
+    marginTop: 8,
+  },
+  archiveButtonText: {
+    color: '#E4572E',
   },
 });
